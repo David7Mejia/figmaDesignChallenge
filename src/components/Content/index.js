@@ -1,5 +1,5 @@
-import "./Content.css";
 import Design from "../Design/index";
+import './Content.css';
 
 const Content = () => {
   return (

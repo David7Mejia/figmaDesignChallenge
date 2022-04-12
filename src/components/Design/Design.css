@@ -1,0 +1,22 @@
+/*? Group 33 */
+.design-content {
+  display: flex;
+  position: absolute;
+  height: 600px;
+}
+
+.design-picture {
+  width: 488px;
+  background-image: url('../../sources/cathedral.avif');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}
+
+.design-text {
+    width: 712px;
+  background: #ffffff;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
