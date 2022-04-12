@@ -1,23 +1,29 @@
-.arbilex{
-    display: flex;
-    height: 60px;
-    margin-top: 0!important;
-
+.arbilex {
+  display: flex;
+  height: 60px;
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 96.8%;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-.arbilex p{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 18px;
-    margin-bottom: 19px;
-    position: relative;
-    color: #2649D8;
-    font-weight: 700;
-    width:228px;
-    height: 23px;
-    left: 120px;
+.arbilex p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 0 19px 0;
+  position: absolute;
+  width: 228px;
+  height: 23px;
+  left: 120px;
+  top: 0;
+  bottom: 0;
+  line-height: 23px;
+  font-weight: 700;
+  font-size: 18px;
 
-    font-family: 'DM Sans', sans-serif;
-
+  color: #2649d8;
 }
