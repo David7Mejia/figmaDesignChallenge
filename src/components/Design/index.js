@@ -18,7 +18,7 @@ const Design = () => {
             venenatis tellus in metus vulputate. Urna nec tincidunt praesent
             semper feugiat nibh sed pulvinar.
             </p>
-            <button>This is a Button</button>
+            <button className='design-button'>This is a Button</button>
           </div>
         </div>
       </div>
