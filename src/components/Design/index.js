@@ -3,7 +3,7 @@ import '../Content/Content.css';
 
 const Design = () => {
   return (
-    <div>
+    <div className="design-section">
       <h1 className="section-title" id="design-title">
         Design
       </h1>
@@ -11,14 +11,16 @@ const Design = () => {
         <div className="design-picture"></div>
         <div className="design-text">
           <div className="design-text-content">
-            <p className='section-title' id='design-big-text'>Lorem ipsum dolor sit amet consectetur.</p>
-            <p id='design-small-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam ut
-            venenatis tellus in metus vulputate. Urna nec tincidunt praesent
-            semper feugiat nibh sed pulvinar.
+              <p className="lorem-ipsum" id="design-big-text">
+                Lorem ipsum dolor sit amet consectetur.
+              </p>
+            <p id="design-small-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam
+              ut venenatis tellus in metus vulputate. Urna nec tincidunt
+              praesent semper feugiat nibh sed pulvinar.
             </p>
-            <button className='design-button'>This is a Button</button>
+            <button className="design-button">This is a Button</button>
           </div>
         </div>
       </div>

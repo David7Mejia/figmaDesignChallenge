@@ -1,17 +1,23 @@
 /*? Group 33 */
 .design-content {
   display: flex;
-  position: absolute;
-  height: 600px;
+  width: 100%;
+  /* position: absolute; */
+  /* flex-direction: column; */
+  /* ! */
+  height: 37.5rem;
 }
 
-.picture-overlay {
-  width: 488px;
-  background-color: rgba(0, 0, 0);
-  opacity: 10%;
+.design-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
 }
+
 .design-picture {
-  width: 488px;
+  width: 40.7%;
+  height: 100%;
+  min-width: 389px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url("../../sources/cathedral.avif");
   background-position: center;
@@ -21,7 +27,7 @@
 }
 
 .design-text {
-  width: 712px;
+  width: 59.3%;
   background: #ffffff;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -29,8 +35,12 @@
 
 .design-text-content {
   /* position: absolute; */
-  width: 652px;
-  height: 431px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  /* ! */
+  height: 71.83%;
   margin: 72px 20px 97px 40px;
 }
 
@@ -38,38 +48,75 @@
   background: linear-gradient(266.33deg, #2649d8 0%, #494aff 99.63%);
   border-radius: 5px;
   width: 166px;
-  height: 48px;
+  height: 48px!important;
 
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 20.83px;
   text-align: center;
 
-  color: #FFFFFF;
-  border:none;
+  color: #ffffff;
+  border: none;
+  top: 0;
+  /* margin-top: 16.70%; */
+}
+
+.lorem-ipsum {
+  height: 42px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  /* line-height: 42px; */
+  color: #1e222e;
+  font-size: 48px;
 
 }
 
 #design-small-text {
-  width: 652px;
-  height: 155px;
+  /* ! */
+  width: 99%;
+  height: 35.96%;
   font-family: "DM Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 31.25px;
   color: #000000;
+  margin-top: 7.42%;
 }
 
 #design-big-text {
-  /* position: absolute; */
-  /* top: 72px; */
-  font-size: 48px;
-  /* margin: 0!important; */
-  /* margin: 72px 0 32px 40px; */
-  /* margin-left: 40px; */
-  line-height: 62px;
-  width: 570px;
+  /* ! */
+  line-height: 3.9rem;
+  width: 80%;
   height: 124px;
 }
+
+@media (max-width: 1454px) {
+  #design-big-text{
+    line-height: 100%;
+    font-size: 45px;
+  }
+  #design-small-text {
+    /* line-height: 100%; */
+    /* font-size: 25px; */
+  }
+}
+
+@media(max-width: 530px){
+  .design-picture{
+    width: 100%;
+  }
+}
+
+@media(min-width: 820px && max-width: 1130px){
+    .design-picture{
+    width: 100%;
+  }
+}
+
+
+/* 1190 make another media for small text */
