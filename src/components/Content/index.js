@@ -1,4 +1,5 @@
 import Design from "../Design/index";
+import Interaction from "../Interaction";
 import './Content.css';
 
 const Content = () => {
@@ -6,8 +7,7 @@ const Content = () => {
     <div className='main-content-holder'>
       <div className='main-content'>
       <Design />
-
-
+      <Interaction />
       </div>
     </div>
   );
