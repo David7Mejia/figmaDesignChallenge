@@ -12,7 +12,9 @@ In the project directory, you can run:
 ### `npm start`
 
 # D3.js Data Visualization
-### Inside useEffect ../components/Data
+### Inside useEffect ../components/Data 
+
+# ![image](https://github.com/David7Mejia/figmaDesignChallenge/public/Screenshot(67).png)
 ```js
 useEffect(() => {
     const w = 800;
