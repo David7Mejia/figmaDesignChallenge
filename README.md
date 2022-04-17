@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Figma Design Challenge 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Create a responsive clone of the Figma file, specifically Web and iPhone. 
+* Display the diffferent sections of design. 
+* Create a D3.js data visualization scatter plot. 
+* Fetch data from seperate API's for chart data.
 
 ## Available Scripts
 
@@ -8,63 +11,69 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# D3.js Data Visualization
+### Inside useEffect ../components/Data
+```js
+useEffect(() => {
+    const w = 800;
+    const h = 500;
+    let svg = d3
+      .select(svgRef.current)
+      .attr("width", w)
+      .attr("height", h)
+      .style("overflow", "visible")
+      .attr("viewBox", `0 0 ${w} ${h}`)
+      .style("margin", "10px");
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    let xScale = d3
+      .scaleTime()
+      .domain(d3.extent(coordinates, (d) => d[0]))
+      .range([0, w]);
 
-### `npm test`
+    let yScale = d3
+      .scaleLinear()
+      .domain([0, d3.max(coordinates, (d) => d[1])])
+      .range([h, 0]);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    let xAxis = d3.axisBottom(xScale);
 
-### `npm run build`
+    let yAxis = d3.axisLeft(yScale);
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    svg
+      .append("g")
+      .attr("transform", `translate(0, ${h})`)
+      .call(xAxis);
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    svg
+      .append("g")
+      .call(yAxis);
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    //set axis labels
+    svg
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -50 + 2 / h)
+      .attr("x", 0 - h / 2)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Number of Cases");
 
-### `npm run eject`
+    svg
+      .append("text")
+      .attr("y", 30 + h)
+      .attr("x", w / 2)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Date Joined");
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    svg
+      .selectAll("circle")
+      .data(coordinates)
+      .enter()
+      .append("circle")
+      .attr("cx", (d) => xScale(d[0]))
+      .attr("cy", (d) => yScale(d[1]))
+      .attr("r", 3)
+      .attr("fill", "#69b3a2");
+  }, [coordinates]);
+  ```
