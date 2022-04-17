@@ -9,6 +9,8 @@ const Design = () => {
       </h1>
       <div className="design-content group33">
         <div className="design-picture">
+          <div className='bm-left'></div>
+          <div className='tp-right'></div>
           <p className="lorem">Lorem ipsum dolor sit amet consectetur.</p>
           <button className="design-button" id='hide-button'>This is a Button</button>
         </div>
