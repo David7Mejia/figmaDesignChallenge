@@ -23,93 +23,94 @@ const Merge = ({ justiceData, casesData }) => {
     // Get count and Justice data and merge into one object with points being coordinates on plane
     const mergeData = (justiceData, count) => {
       let mergedData = {};
+      let parseTime = d3.timeParse("%Y-%m-%d");
       justiceData.forEach((el) => {
         if (count[el[0]]) {
+          let char  = parseTime(el[1]);
           mergedData[el[0]] = {
             id: el[0],
-            points: [el[1], count[el[0]]],
+            points: [char, count[el[0]]],
           };
         }
       });
       return mergedData;
     };
     // Set time data to one array for parsing in D3
-    const timeData = (justiceData) => {
-      let times = [];
-      justiceData.forEach((el) => {
-        times.push(el[1]);
-      });
-      return times;
-    };
-    setTime(timeData(justiceData));
+    // const timeData = (justiceData) => {
+    //   let times = [];
+    //   justiceData.forEach((el) => {
+    //     times.push(el[1]);
+    //   });
+    //   return times;
+    // };
+    // setTime(timeData(justiceData));
 
     setMerged(mergeData(justiceData, count));
   }, [casesData, justiceData]);
 
   const svgRef = useRef();
-    const ess = [];
-    // Create array with count of cases per justice and the date they joined from the merged data
-    // merged data has id of justice to identify who voted => unnecessary for D3
+  const coordinates = [];
+  // Create array with count of cases per justice and the date they joined from the merged data
+  // merged data has id of justice to identify who voted => unnecessary for D3
   for (let key in merged) {
-    let x = merged[key].points[0];
-    let y = merged[key].points[1];
-    ess.push([x, y]);
-  }
-  console.log(ess);
+    coordinates.push(merged[key].points);
+}
 
-  //   useEffect(() => {
-  //     //container
-  //     // const parseTime = d3.timeParse("%b %d, %Y");
-  //     const w = 1000;
-  //       const h = 1000;
 
-  //       var svg = d3.select(svgRef.current);
 
-  //       const mDomain = d3.extent(time);
-  //       const xScale = d3
-  //       .scaleTime()
-  //       .domain(mDomain)
-  //           .range([0, w]);
+    useEffect(() => {
+      const w = 1000;
+      const h = 500;
+        let svg = d3
+            .select(svgRef.current)
+            .attr("width", w)
+            .attr("height", h)
+            .style('overflow', 'visible')
+            .attr('viewBox', `0 0 ${w} ${h}`)
+        .style("margin-top", "50px");
 
-  //       const yScale = d3
-  //           .scaleLinear()
-  //           .domain([0, d3.max(count)])
-  //           .range([h, 0]);
+        let xScale = d3.scaleTime()
+            .domain(d3.extent(coordinates, (d) => d[0]))
+            .range([0, w]);
 
-  //       var xAxis = d3.axisBottom(xScale);
-  //       svg.append("g").attr("transform", "translate(0,60)").call(xAxis);
+      let yScale = d3
+        .scaleLinear()
+        .domain([0, d3.max(coordinates, (d) => d[1])])
+        .range([h, 0]);
 
-  //       svg
-  //         .append("g")
-  //         .attr("transform", "translate(0,60)")
-  //           .call(xAxis.ticks(d3.timeYear));
+      let xAxis = d3.axisBottom(xScale);
 
-  //       svg
-  //         .append("text")
-  //         .attr("transform", "translate(300,95)")
-  //         .style("text-anchor", "middle")
-  //         .attr("fill", "black")
-  //           .text("Dates");
+        let yAxis = d3.axisLeft(yScale);
 
-  //       svg
-  //         .selectAll("circle")
-  //         .data(Object.values(merged))
-  //         .enter()
-  //         .append("circle")
-  //         .attr("r", 5)
-  //           .attr("fill", "black")
-  //           .attr("cx", function (d) {
-  //               return xScale(d.points[0]);
-  //           })
-  //           .attr("cy", function (d) {
-  //               return yScale(d.points[1]);
-  //             })
+        svg
+          .append("g")
+        //   .attr("transform", "translate(30, " + (h-20) + ")")
+          .attr("transform", `translate(0, ${h})` )
+            .call(xAxis);
 
-  //   }, [merged, count, justiceData]);
+        svg
+          .append("g")
+        //   .attr("transform", "translate(30, -20)")
+            .call(yAxis);
+
+        svg
+          .selectAll("circle")
+          .data(coordinates)
+          .enter()
+          .append("circle")
+          .attr("cx", (d) => xScale(d[0]))
+          .attr("cy", (d) => yScale(d[1]))
+          .attr("r", 3)
+          .attr("fill", "#69b3a2");
+
+
+
+
+    }, [coordinates]);
 
   return (
-    <div id="svg-data">
-      <svg ref={svgRef}></svg>
+      <div id="svg-data">
+          { count && <svg className='data-svg'ref={svgRef}></svg>}
     </div>
   );
 };

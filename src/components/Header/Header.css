@@ -27,3 +27,16 @@
 
   color: #2649d8;
 }
+
+@media(max-width: 730px) {
+  .arbilex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .arbilex p{
+    position: relative;
+    left: 0;
+  }
+}
