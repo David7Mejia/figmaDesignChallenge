@@ -43,7 +43,7 @@ const Data = () => {
 // console.log(casesData, justiceData)
 
   return (
-    <div>
+    <div className='data-section'>
       <h1 className="section-title" id="data-title">
         Data
       </h1><div className='data-content-holder'>

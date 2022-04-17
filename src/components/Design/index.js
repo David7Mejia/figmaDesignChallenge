@@ -13,7 +13,7 @@ const Design = () => {
           <button className="design-button" id='hide-button'>This is a Button</button>
         </div>
         <div className="design-text">
-          <div className="design-text-content">
+          <div className="design-text-content" id='lorem-content'>
             <p className="lorem-ipsum" id="design-big-text">
               Lorem ipsum dolor sit amet consectetur.
             </p>
