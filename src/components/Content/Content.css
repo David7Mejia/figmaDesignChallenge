@@ -10,11 +10,9 @@
 
 .section-title{
     height: 42px;
-
     font-family: 'DM Sans', sans-serif;
     font-style: normal;
     font-weight: 700;
-    /* font-size: 32px; */
     line-height: 42px;
     color: #1E222E;
 }
@@ -24,13 +22,6 @@
     width: 105px;
     margin-bottom: 24px;
 }
-
-/* @media(max-width: 820px){
-    .main-content-holder{
-        padding-left: 0;
-        padding-right: 0;
-    }
-} */
 
 @media(max-width: 730px) {
   .main-content-holder{

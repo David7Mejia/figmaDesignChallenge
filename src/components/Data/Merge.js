@@ -73,33 +73,30 @@ const Merge = ({ justiceData, casesData }) => {
 
     svg
       .append("g")
-      //   .attr("transform", "translate(30, " + (h-20) + ")")
       .attr("transform", `translate(0, ${h})`)
       .call(xAxis);
 
     svg
       .append("g")
-      //   .attr("transform", "translate(30, -20)")
       .call(yAxis);
 
     //set axis labels
-      svg
-          .append("text")
-          .attr("transform", "rotate(-90)")
-          .attr("y", -50+(2/h)  )
-          .attr("x", 0 - (h / 2))
-          .attr("dy", "1em")
-          .style("text-anchor", "middle")
-          .text("Number of Cases");
+    svg
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -50 + 2 / h)
+      .attr("x", 0 - h / 2)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Number of Cases");
 
-      svg
-          .append("text")
-          .attr("y", 30+h)
-          .attr("x", w / 2)
-          .attr("dy", "1em")
-          .style("text-anchor", "middle")
-          .text("Date Joined");
-
+    svg
+      .append("text")
+      .attr("y", 30 + h)
+      .attr("x", w / 2)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Date Joined");
 
     svg
       .selectAll("circle")

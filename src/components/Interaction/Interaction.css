@@ -1,10 +1,7 @@
 .var-a,
 .var-b {
   width: 100%;
-  /* appearance: none; */
-  background:
-
-#EEEEEE;
+  background: #EEEEEE;
   -webkit-appearance: none;
   height: 8px;
   border-radius: 5px;

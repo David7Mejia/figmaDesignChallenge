@@ -1,15 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./Data.css";
 import Merge from "./Merge";
-import * as d3 from "d3";
 
 const Data = () => {
   const [justiceData, setJusticeData] = useState([]);
   const [casesData, setCasesData] = useState([]);
-  // const [count, setCount] = useState(null);
-  // const [merged, setMerged] = useState(null);
 
-  // const svgRef = useRef();
   useEffect(() => {
     const votes = [];
     const getCases = async () => {
@@ -25,7 +21,7 @@ const Data = () => {
       setCasesData(votes);
     };
     getCases();
-    // setCasesData(votes);
+
     const justices = [];
     const getJustices = async () => {
       const res = await fetch(
@@ -40,7 +36,6 @@ const Data = () => {
     getJustices();
   }, []);
 
-// console.log(casesData, justiceData)
 
   return (
     <div className='data-section'>
