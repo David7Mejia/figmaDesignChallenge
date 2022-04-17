@@ -116,6 +116,10 @@
   display: none;
 }
 
+.data-section{
+  margin-bottom: 50px;
+}
+
 @media (max-width: 1454px) {
   #design-big-text {
 

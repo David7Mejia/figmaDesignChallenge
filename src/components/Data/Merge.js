@@ -86,7 +86,7 @@ const Merge = ({ justiceData, casesData }) => {
       svg
           .append("text")
           .attr("transform", "rotate(-90)")
-          .attr("y", 0 - margin.left)
+          .attr("y", -50+(2/h)  )
           .attr("x", 0 - (h / 2))
           .attr("dy", "1em")
           .style("text-anchor", "middle")
@@ -94,12 +94,12 @@ const Merge = ({ justiceData, casesData }) => {
 
       svg
           .append("text")
-          .attr("y", h - margin.bottom)
+          .attr("y", 30+h)
           .attr("x", w / 2)
           .attr("dy", "1em")
           .style("text-anchor", "middle")
           .text("Date Joined");
-        
+
 
     svg
       .selectAll("circle")
