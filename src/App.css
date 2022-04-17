@@ -2,3 +2,9 @@ body{
   width: 100%;
   /* display: flex; */
 }
+
+@media (max-width: 580px) {
+body{
+  width: 100%;
+}
+}
