@@ -252,6 +252,9 @@
   .data-section {
     height: 600px
   }
+  #res-data{
+    height: 300px;
+  }
 
 }
 

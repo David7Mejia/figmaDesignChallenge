@@ -46,7 +46,7 @@ const Data = () => {
     <div className='data-section'>
       <h1 className="section-title" id="data-title">
         Data
-      </h1><div className='data-content-holder'>
+      </h1><div className='data-content-holder' id='res-data'>
 
       {justiceData.length > 0 && casesData.length > 0 && (
         <Merge

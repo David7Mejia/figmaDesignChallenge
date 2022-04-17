@@ -47,7 +47,7 @@ const Merge = ({ justiceData, casesData }) => {
   }
 
   useEffect(() => {
-    const w = 1000;
+    const w = 800;
     const h = 500;
     let svg = d3
       .select(svgRef.current)
@@ -55,7 +55,7 @@ const Merge = ({ justiceData, casesData }) => {
       .attr("height", h)
       .style("overflow", "visible")
       .attr("viewBox", `0 0 ${w} ${h}`)
-      .style("margin-top", "50px");
+      .style("margin", "10px");
 
     let xScale = d3
       .scaleTime()

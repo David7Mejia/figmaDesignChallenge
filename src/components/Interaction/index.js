@@ -18,7 +18,9 @@ const Interaction = () => {
       <h1 className="section-title" id="interaction-title">
         Interaction
       </h1>
-      <p>Variable A: {varAValue}</p>
+      <p>
+        Variable A: <span className="num-span">{varAValue}</span>
+      </p>
       <input
         type="range"
         min="1"
@@ -27,7 +29,9 @@ const Interaction = () => {
         value={varAValue}
         onChange={handleVarAChange}
       />
-      <p>Variable B: {varBValue}</p>
+      <p>
+        Variable B: <span className="num-span">{varBValue}</span>
+      </p>
 
       <input
         type="range"
@@ -37,7 +41,9 @@ const Interaction = () => {
         value={varBValue}
         onChange={handleVarBChange}
       />
-      <p>Variable A + Variable B: {totalValue}</p>
+      <p>
+        Variable A + Variable B: <span className="num-span">{totalValue}</span>
+      </p>
     </div>
   );
 };
