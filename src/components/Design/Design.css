@@ -139,6 +139,17 @@
     align-items: center;
   }
 
+  .svg-data{
+    overflow: scroll;
+    width: 400px;
+    height: 400px
+  }
+
+  .data-svg{
+     width: 500px;
+     height: 500px
+  }
+
   .design-section {
     margin-top: 24px;
   }

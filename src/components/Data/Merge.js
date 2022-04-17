@@ -4,7 +4,6 @@ import * as d3 from "d3";
 const Merge = ({ justiceData, casesData }) => {
   const [count, setCount] = useState([]);
   const [merged, setMerged] = useState([]);
-  const [time, setTime] = useState([]);
 
   useEffect(() => {
     // Count the number of cases per justice and save to object
@@ -26,7 +25,7 @@ const Merge = ({ justiceData, casesData }) => {
       let parseTime = d3.timeParse("%Y-%m-%d");
       justiceData.forEach((el) => {
         if (count[el[0]]) {
-          let char  = parseTime(el[1]);
+          let char = parseTime(el[1]);
           mergedData[el[0]] = {
             id: el[0],
             points: [char, count[el[0]]],
@@ -35,15 +34,6 @@ const Merge = ({ justiceData, casesData }) => {
       });
       return mergedData;
     };
-    // Set time data to one array for parsing in D3
-    // const timeData = (justiceData) => {
-    //   let times = [];
-    //   justiceData.forEach((el) => {
-    //     times.push(el[1]);
-    //   });
-    //   return times;
-    // };
-    // setTime(timeData(justiceData));
 
     setMerged(mergeData(justiceData, count));
   }, [casesData, justiceData]);
@@ -54,63 +44,77 @@ const Merge = ({ justiceData, casesData }) => {
   // merged data has id of justice to identify who voted => unnecessary for D3
   for (let key in merged) {
     coordinates.push(merged[key].points);
-}
+  }
 
+  useEffect(() => {
+    const w = 1000;
+    const h = 500;
+    let svg = d3
+      .select(svgRef.current)
+      .attr("width", w)
+      .attr("height", h)
+      .style("overflow", "visible")
+      .attr("viewBox", `0 0 ${w} ${h}`)
+      .style("margin-top", "50px");
 
+    let xScale = d3
+      .scaleTime()
+      .domain(d3.extent(coordinates, (d) => d[0]))
+      .range([0, w]);
 
-    useEffect(() => {
-      const w = 1000;
-      const h = 500;
-        let svg = d3
-            .select(svgRef.current)
-            .attr("width", w)
-            .attr("height", h)
-            .style('overflow', 'visible')
-            .attr('viewBox', `0 0 ${w} ${h}`)
-        .style("margin-top", "50px");
+    let yScale = d3
+      .scaleLinear()
+      .domain([0, d3.max(coordinates, (d) => d[1])])
+      .range([h, 0]);
 
-        let xScale = d3.scaleTime()
-            .domain(d3.extent(coordinates, (d) => d[0]))
-            .range([0, w]);
+    let xAxis = d3.axisBottom(xScale);
 
-      let yScale = d3
-        .scaleLinear()
-        .domain([0, d3.max(coordinates, (d) => d[1])])
-        .range([h, 0]);
+    let yAxis = d3.axisLeft(yScale);
 
-      let xAxis = d3.axisBottom(xScale);
+    svg
+      .append("g")
+      //   .attr("transform", "translate(30, " + (h-20) + ")")
+      .attr("transform", `translate(0, ${h})`)
+      .call(xAxis);
 
-        let yAxis = d3.axisLeft(yScale);
+    svg
+      .append("g")
+      //   .attr("transform", "translate(30, -20)")
+      .call(yAxis);
 
-        svg
-          .append("g")
-        //   .attr("transform", "translate(30, " + (h-20) + ")")
-          .attr("transform", `translate(0, ${h})` )
-            .call(xAxis);
+    //set axis labels
+      svg
+          .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 0 - margin.left)
+          .attr("x", 0 - (h / 2))
+          .attr("dy", "1em")
+          .style("text-anchor", "middle")
+          .text("Number of Cases");
 
-        svg
-          .append("g")
-        //   .attr("transform", "translate(30, -20)")
-            .call(yAxis);
+      svg
+          .append("text")
+          .attr("y", h - margin.bottom)
+          .attr("x", w / 2)
+          .attr("dy", "1em")
+          .style("text-anchor", "middle")
+          .text("Date Joined");
+        
 
-        svg
-          .selectAll("circle")
-          .data(coordinates)
-          .enter()
-          .append("circle")
-          .attr("cx", (d) => xScale(d[0]))
-          .attr("cy", (d) => yScale(d[1]))
-          .attr("r", 3)
-          .attr("fill", "#69b3a2");
-
-
-
-
-    }, [coordinates]);
+    svg
+      .selectAll("circle")
+      .data(coordinates)
+      .enter()
+      .append("circle")
+      .attr("cx", (d) => xScale(d[0]))
+      .attr("cy", (d) => yScale(d[1]))
+      .attr("r", 3)
+      .attr("fill", "#69b3a2");
+  }, [coordinates]);
 
   return (
-      <div id="svg-data">
-          { count && <svg className='data-svg'ref={svgRef}></svg>}
+    <div id="svg-data">
+      {count && <svg className="data-svg" ref={svgRef}></svg>}
     </div>
   );
 };
